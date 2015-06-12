@@ -67,12 +67,12 @@ void MyList<T>::double_space(){
     T *b;
 	b = new T [size];
 	int i;
-	for (i=0; i<size; ++i) {
+	for (i=0; i<index; ++i) {
 		b[i]=a[i];
 	}
 	delete [] a;
  	a =	new T[2*size];
- 	for (i=0; i<size; ++i) {
+ 	for (i=0; i<index; ++i) {
  		a[i] = b[i];
  	}
  	delete [] b;
@@ -114,10 +114,9 @@ void MyList<T>::push(const T &item){
 		a[index] = item;
 		++index;
 	}
-	if (index == size ) {
+	else if (index == size ) {
 	    double_space();
-	    
-		a[index] = item;
+	    a[index] = item;
 		++index;
 	}
 }
@@ -431,8 +430,12 @@ int main(){
 	b.remove(4); // b = [15, 1, 116, ...]
 	cout<<b<<endl;
 	MyList<double> c(10, 3.14);
+	//cout << c << endl; 
 	for (i=0; i<100; ++i)
 		c.push(1.1*i);
+	//cout << c << endl;
+	//cout << c[25] << endl;
+	//cout << c.get_size() << endl;
 	cout<<c.get_item(100, 105)<<endl;
 	return 0;
 }
